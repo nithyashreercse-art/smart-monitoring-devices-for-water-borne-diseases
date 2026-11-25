@@ -1,0 +1,150 @@
+
+# Smart Community Health Monitoring System
+## Backend API Documentation
+
+**Base URL:** http://localhost:5000
+
+### 1. Authentication
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| POST | /register | Register user |
+| POST | /login | Login user |
+
+### 2. Water Quality
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| POST | /submit-water-data | Submit water readings |
+| GET | /get-history | View water quality history |
+| GET | /get-alerts | View alerts |
+
+### 3. Disease Reports
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| POST | /disease-reports | Submit disease report |
+| GET | /disease-reports | View all reports |
+| GET | /disease-reports/{report_id} | View one report |
+
+### 4. Dashboard
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | /dashboard/summary | Dashboard statistics |
+| GET | /dashboard/high-risk-locations | High-risk locations |
+| GET | /map/risk-locations | Map risk locations |
+
+### 5. Government Response
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| POST | /response-actions | Create response action |
+| GET | /response-actions | View response actions |
+| PUT | /response-actions/{action_id}/status | Update action status |
+| GET | /response-actions/{action_id}/history | View status history |
+
+### Authentication
+
+Protected endpoints require:
+
+Authorization: Bearer <JWT_TOKEN>
+
+### User Roles
+
+- community_user
+- health_worker
+- government_officer
+- admin
+
+### Response Status Flow
+
+Reported → Under Investigation → Action Taken → Monitoring → Resolved
+
+
+
+## Water Quality Submission
+
+**Method:** POST
+
+**Endpoint:** `/submit-water-data`
+
+**Headers:**
+```http
+Content-Type: application/json
+Authorization: Bearer <JWT_TOKEN>
+```
+
+**Request Body:**
+```json
+{
+  "location": "Community A",
+  "ph": 7.2,
+  "turbidity": 4.5,
+  "temperature": 28,
+  "tds": 350,
+  "rainfall_mm": 25
+}
+```
+
+**Purpose:** Submit water-quality readings for risk assessment and storage.
+
+**Note:** The sample values are for testing only.
+
+
+
+## Disease Report Submission
+
+**Method:** POST
+
+**Endpoint:** `/disease-reports`
+
+**Request Body:**
+```json
+{
+  "location": "Community A",
+  "disease_name": "Demo Case",
+  "case_count": 2,
+  "report_date": "2026-11-23",
+  "remarks": "Sample testing record"
+}
+```
+
+**Access:** health_worker, admin
+
+---
+
+## Create Government Response Action
+
+**Method:** POST
+
+**Endpoint:** `/response-actions`
+
+**Request Body:**
+```json
+{
+  "location": "Community A",
+  "assigned_officer": 2,
+  "action_description": "Water quality inspection"
+}
+```
+
+**Access:** government_officer, admin
+
+---
+
+## Update Response Status
+
+**Method:** PUT
+
+**Endpoint:** `/response-actions/3/status`
+
+**Request Body:**
+```json
+{
+  "status": "Under Investigation",
+  "remarks": "Inspection started"
+}
+```
+
+**Access:** government_officer, admin
