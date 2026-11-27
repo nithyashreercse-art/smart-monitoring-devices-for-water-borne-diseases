@@ -1,0 +1,104 @@
+{
+  "accuracy": 0.942,
+  "precision_macro": 0.94,
+  "recall_macro": 0.9336,
+  "f1_macro": 0.9367,
+  "cv_accuracy_mean": 0.9415,
+  "cv_accuracy_std": 0.0158,
+  "per_class": [
+    {
+      "label": "Low",
+      "precision": 0.9581,
+      "recall": 0.9669,
+      "f1": 0.9625,
+      "support": 544
+    },
+    {
+      "label": "Medium",
+      "precision": 0.8975,
+      "recall": 0.8975,
+      "f1": 0.8975,
+      "support": 283
+    },
+    {
+      "label": "High",
+      "precision": 0.9643,
+      "recall": 0.9364,
+      "f1": 0.9501,
+      "support": 173
+    }
+  ],
+  "confusion_matrix": [
+    [
+      526,
+      18,
+      0
+    ],
+    [
+      23,
+      254,
+      6
+    ],
+    [
+      0,
+      11,
+      162
+    ]
+  ],
+  "feature_importance": [
+    {
+      "feature": "ecoli_max",
+      "label": "E. coli (max, CFU/100 mL)",
+      "importance": 0.3397
+    },
+    {
+      "feature": "cases_per_1000",
+      "label": "Cases per 1000 people (7 d)",
+      "importance": 0.3114
+    },
+    {
+      "feature": "turbidity_mean",
+      "label": "Turbidity (mean, NTU)",
+      "importance": 0.1299
+    },
+    {
+      "feature": "chlorine_min",
+      "label": "Residual chlorine (min, mg/L)",
+      "importance": 0.1135
+    },
+    {
+      "feature": "case_trend",
+      "label": "Case trend (last 3 d vs previous 4 d)",
+      "importance": 0.0322
+    },
+    {
+      "feature": "deaths_7d",
+      "label": "Deaths (7 d)",
+      "importance": 0.0263
+    },
+    {
+      "feature": "rain_7d",
+      "label": "Rainfall (7 d, mm)",
+      "importance": 0.0227
+    },
+    {
+      "feature": "rain_3d",
+      "label": "Rainfall (3 d, mm)",
+      "importance": 0.0164
+    },
+    {
+      "feature": "ph_dev",
+      "label": "pH deviation from 6.5-8.5",
+      "importance": 0.0052
+    },
+    {
+      "feature": "type_code",
+      "label": "Community type (rural/semi-urban/urban)",
+      "importance": 0.0027
+    }
+  ],
+  "n_train": 3000,
+  "n_test": 1000,
+  "trained_at": "2026-11-17T20:01:36",
+  "note": "Evaluated on SIMULATED labelled data (random 75/25 split). Real-world performance must be validated with real surveillance data."
+}
